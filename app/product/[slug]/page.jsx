@@ -6,6 +6,7 @@ import axios from 'axios';
 import api from "@/utils/axios";
 
 const ProductPage = () => {
+    const user = null;
     const { slug } = useParams()
     const [ product, setProduct ] = useState(null)
     const [ loading, setLoading ] = useState(true)
@@ -25,23 +26,6 @@ const ProductPage = () => {
 
         if (slug) fetchProduct()
     }, [slug])
-
-    const handleAddToCart = async () => {
-        if(!user) {
-            router.push(`/login?redirect=/product/${product.slug}`);
-            return
-        }
-
-        try {
-            await api.post("/api/carts/add", {
-                product_id: product.id,
-                quantity: 1
-            });
-            router.push('/cart');
-        } catch(error) {
-            console.log("Error adding to cart", err);
-        }
-    }
 
     if(loading) return <p className='text-center text-gray-600'>Loading Product</p>;
     if (!product) return <p className="text-center text-red-500">Product not found.</p>
@@ -79,7 +63,7 @@ const ProductPage = () => {
             </div>
 
             {/* Button */}
-            <button onClick={handleAddToCart} className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+            <button  className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
                 Add to Cart
             </button>
             </div>
