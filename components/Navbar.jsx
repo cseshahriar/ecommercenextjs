@@ -2,8 +2,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
 
 const Navbar = () => {
+  const { user, loading, logout } = useAuth();
   const pathname = usePathname();
 
   const navLinks = [
@@ -33,18 +35,22 @@ const Navbar = () => {
               {link.label}
             </Link>
           ))}
-            {/* After auth */}
+          
+          {loading ? (
+            <span className="text-gray-400 animate-pulse">Loading...</span>
+          ) : user ? (
             <>
               <Link href="/user/order" className="hover:underline">
                 My Orders
-              </Link> 
+              </Link>
               <button
+                onClick={logout}
                 className="hover:underline text-red-600"
               >
                 Logout
               </button>
             </>
-            {/* If not login */}
+          ) : (
             <>
               <Link href="/login" className="hover:underline">
                 Login
@@ -53,7 +59,7 @@ const Navbar = () => {
                 Register
               </Link>
             </>
-      
+          )}
         </div>
       </div>
     </nav>

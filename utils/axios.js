@@ -49,7 +49,7 @@ api.interceptors.response.use(
     ) {
       originalRequest._retry = true;
       try {
-        await api.post('api/account/refresh');
+        await api.post('/api/account/refresh');
         return api(originalRequest);
       } catch (refreshError) {
         return Promise.reject(refreshError);
