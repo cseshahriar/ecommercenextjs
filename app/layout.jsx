@@ -1,23 +1,23 @@
-import Navbar from "@/components/Navbar";
-import "./globals.css";
-import Footer from "@/components/Footer";
+import Navbar from '@/components/Navbar';
+import './globals.css';
+import Footer from '@/components/Footer';
 
 export const metadata = {
-  title: "My E-commerce Store",
-  description: "Buy products at best prices from our e-commerce store.",
+  title: 'My E-commerce Store',
+  description: 'Buy products at best prices from our e-commerce store.',
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col font-sans bg-gray-50 text-gray-900">
-          <Navbar />
+        <Navbar />
 
-          <main className="flex-grow container max-auto px-4 py-6">
-            {children}
-          </main>
-          
-          <Footer />
+        <main className="flex-grow container mx-auto px-4 py-6">
+          {children}
+        </main>
+
+        <Footer />
       </body>
     </html>
   );
