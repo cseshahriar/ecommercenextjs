@@ -30,32 +30,33 @@
     User continues normally
 * */
 
-import axios from "axios";
+import axios from 'axios';
 
 const api = axios.create({
-    baseURL: `${process.env.NEXT_PUBLIC_API_BASE_URL}`,
-    withCredentials: true // allow cookies
+  baseURL: `${process.env.NEXT_PUBLIC_API_BASE_URL}`,
+  withCredentials: true, // allow cookies, দিলে browser API request এর সাথে cookie/session পাঠায়। এটা login authentication এর জন্য দরকার হয়।
 });
 
 api.interceptors.response.use(
-    (response) => response,
-    async (error) => {
-        const originalRequest = error.config;
-        if(
-            error.response?.status === 401 && 
-            !originalRequest._retry &&
-            !originalRequest.url.includes('refresh')
-        ) {
-            originalRequest._retry = true;
-            try {
-                await api.post("api/account/refresh");
-                return api(originalRequest);
-            } catch(refreshError) {
-                return Promise.reject(refreshError);
-            }
-        }
-        return Promise.reject(error);
+  (response) => response,
+  async (error) => {
+    const originalRequest = error.config;
+
+    if (
+      error.response?.status === 401 &&
+      !originalRequest._retry &&
+      !originalRequest.url.includes('refresh')
+    ) {
+      originalRequest._retry = true;
+      try {
+        await api.post('api/account/refresh');
+        return api(originalRequest);
+      } catch (refreshError) {
+        return Promise.reject(refreshError);
+      }
     }
+    return Promise.reject(error);
+  },
 );
 
 export default api;

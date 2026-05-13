@@ -7,7 +7,8 @@ const Hero = () => {
             Welcome to <span className="text-rose-600">MyShop</span>
           </h1>
           <p className="text-gray-700 mb-6">
-            Discover the best clothing & electronics products at unbeatable prices.
+            Discover the best clothing & electronics products at unbeatable
+            prices.
           </p>
           <a
             href="/product"
@@ -24,9 +25,9 @@ const Hero = () => {
             className="w-full h-auto rounded"
           />
         </div>
-    </div>
-  </section>
-  )
-}
+      </div>
+    </section>
+  );
+};
 
-export default Hero
+export default Hero;
