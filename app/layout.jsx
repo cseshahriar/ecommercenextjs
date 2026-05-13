@@ -1,6 +1,8 @@
 import Navbar from '@/components/Navbar';
 import './globals.css';
 import Footer from '@/components/Footer';
+import { AuthProvider } from "@/context/AuthContext";
+import { Toaster } from 'react-hot-toast';
 
 export const metadata = {
   title: 'My E-commerce Store',
@@ -11,13 +13,17 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col font-sans bg-gray-50 text-gray-900">
-        <Navbar />
+         <AuthProvider>
+            <Navbar />
 
-        <main className="flex-grow container mx-auto px-4 py-6">
-          {children}
-        </main>
+            <main className="flex-grow container mx-auto px-4 py-6">
+              {children}
+            </main>
 
-        <Footer />
+            <Footer />
+            
+            <Toaster position="top-right" reverseOrder={false} />
+         </AuthProvider>
       </body>
     </html>
   );
