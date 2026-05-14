@@ -13,6 +13,27 @@ const Navbar = () => {
     { href: "/product", label: "Products" },
     { href: "/cart", label: "Cart" },
   ];
+  
+  // reusable nav link style
+  const navLinkClass = (path, extraClass = "") =>
+    `relative pb-1 transition-all duration-300
+    ${
+      pathname === path
+        ? "font-semibold text-black after:w-full"
+        : "text-gray-700 hover:text-black after:w-0 hover:after:w-full"
+    }
+
+    after:content-['']
+    after:absolute
+    after:left-0
+    after:-bottom-1
+    after:h-[2px]
+    after:bg-black
+    after:transition-all
+    after:duration-300
+
+    ${extraClass}
+  `;
 
   return (
     <nav className="bg-white shadow sticky top-0 z-50">
@@ -26,11 +47,7 @@ const Navbar = () => {
             <Link
               key={link.href}
               href={link.href}
-              className={
-                pathname === link.href
-                  ? "font-semibold underline"
-                  : "hover:underline"
-              }
+              className={navLinkClass(link.href)}
             >
               {link.label}
             </Link>
@@ -40,22 +57,26 @@ const Navbar = () => {
             <span className="text-gray-400 animate-pulse">Loading...</span>
           ) : user ? (
             <>
-              <Link href="/user/order" className="hover:underline">
+              <Link href="/user/order" 
+                className={navLinkClass("/user/order")}
+              >
                 My Orders
               </Link>
               <button
                 onClick={logout}
-                className="hover:underline text-red-600"
+                className={navLinkClass("/logout", "text-red-600")}
               >
                 Logout
               </button>
             </>
           ) : (
             <>
-              <Link href="/login" className="hover:underline">
+              <Link href="/login" className={navLinkClass("/login")}>
                 Login
               </Link>
-              <Link href="/register" className="hover:underline">
+              <Link href="/register" 
+                className={navLinkClass("/login")}
+              >
                 Register
               </Link>
             </>
