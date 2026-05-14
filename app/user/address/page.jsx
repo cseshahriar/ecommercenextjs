@@ -31,6 +31,7 @@ const  AddressPage = () => {
         if(!confirm("Are you sure you want to delete this address?")) return;
         try {
             await api.delete(`/api/shippings/addresses/${id}`)
+            toast.success("Address removed successfully");
             // refresh by filtering locally (better UX than re-fetching everything)
             setAddresses(addresses.filter(addr => addr.id != id))
         } catch (error) {

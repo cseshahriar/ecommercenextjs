@@ -29,7 +29,10 @@ const CreateAddress = () => {
         setError(null);
         try {
             await api.post("/api/shippings/addresses", form)
-            router.push("/user/address")
+            toast.success("Address added successfully");
+            setTimeout(() => {
+                router.push("/user/address");
+            }, 1000);
         } catch(err) {
             setError(err.response?.data?.detail || 'Failed to save address')
             toast.error(
