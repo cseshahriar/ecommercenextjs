@@ -1,4 +1,4 @@
-import ProtectedRoute from '@/components/ProtectedRoute';
+import ProtectedRoute from "@/components/ProtectedRoute";
 import Sidebar from "@/components/user/Sidebar";
 
 export default function UserLayout({children}) {

@@ -1,9 +1,9 @@
-'use  client';
+"use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
-import { useHasMounted } from "@/hooks/useHasMounted";
+import useHasMounted from "@/hooks/useHasMounted";
 
 export default function Sidebar() {
     const pathname = usePathname();

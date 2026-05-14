@@ -1,7 +1,7 @@
 'use client';
 
 import { useAuth } from '../context/AuthContext';
-import { useHasMounted } from '../hooks/useHasMounted';
+import useHasMounted from "@/hooks/useHasMounted";
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -35,3 +35,6 @@ const ProtectedRoute = ({ children, adminOnly = false }) => {
 
   return children;
 };
+
+
+export default ProtectedRoute;
