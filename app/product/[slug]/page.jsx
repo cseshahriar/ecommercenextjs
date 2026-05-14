@@ -70,7 +70,7 @@ const ProductPage = () => {
                     <p className="text-gray-600 mb-4">
                         {product.description}
                     </p>
-                    <p className="text-xl font-semibold mb-2">₹{product.price}</p>
+                    <p className="text-xl font-semibold mb-2">৳ {product.price}</p>
                     <p className="text-sm text-gray-500 mb-4">In stock: {product.stock_quantity}</p>
 
                     {/* Categories */}

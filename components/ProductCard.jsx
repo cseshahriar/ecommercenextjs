@@ -12,7 +12,7 @@ const ProductCard = ({product}) => {
                     alt={product?.title}
                 />
                 <h2 className="text-lg front-semibold mt-2">{product?.title}</h2>
-                <p className="text-gray-600">{product?.price}</p>
+                <p className="text-gray-600">৳ {product?.price}</p>
             </Link>
         </div>
     )
