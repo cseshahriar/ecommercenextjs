@@ -34,9 +34,9 @@ const ProductPage = () => {
     if(loading) return <p className='text-center text-gray-600'>Loading Product</p>;
     if (!product) return <p className="text-center text-red-500">Product not found.</p>
 
-    const handleAddToCart = async () =>{
-        if (!user){
-            router.push(`/login?redirect=/product/${product.slug}`);
+    const handleAddToCart = async () => {
+        if (!user) {
+            router.push(`/login?redirect=/product/${product.slug}`)
             return
         }
 
@@ -44,13 +44,21 @@ const ProductPage = () => {
             await api.post("/api/carts/add", {
                 product_id: product.id,
                 quantity: 1,
-            });
-            router.push("/cart");
-            toast.success("Add to cart successful!");
-        
+            })
+            toast.success("Added to cart successfully!")
+            
+            // redirect after 1 second
+            setTimeout(() => {
+                router.push("/cart")
+            }, 1000)
+
         } catch (error) {
-            console.error("Error adding to cart:", err);      
-            toast.error("Error adding to cart:");
+            console.error("Error adding to cart:", error)
+
+            toast.error(
+                error.response?.data?.detail ||
+                "Failed to add product to cart."
+            )
         }
     }
 
