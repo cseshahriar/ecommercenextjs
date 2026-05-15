@@ -83,7 +83,7 @@ const CheckoutPage = () => {
                 total_price: 0
             })
 
-            router.push("/orders")
+            router.push("/user/order")
 
         } catch (error) {
             console.log(error)
