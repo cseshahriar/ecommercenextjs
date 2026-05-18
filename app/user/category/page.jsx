@@ -74,7 +74,7 @@ const CategoryPage = () => {
                                     <td className="border border-gray-300 px-4 py-2">{cat.name}</td>
                                     <td className="border border-gray-300 px-4 py-2 text-center">
                                         <button
-                                            onClick={() => router.push(`/user/address/edit/${addr.id}`)}
+                                            onClick={() => router.push(`/user/category/edit/${cat.id}`)}
                                             className="mr-2 px-3 py-1 bg-blue-500 text-white rounded cursor-pointer"
                                             >
                                             <Pencil size={16} className='inline' /> Edit
