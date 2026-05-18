@@ -16,6 +16,7 @@ export const AuthProvider = ({ children }) => {
     try {
       const response = await api.get('/api/account/me');
       setUser(response.data);
+      return response.data;
     } catch (error) {
       setUser(null);
     } finally {
@@ -24,10 +25,24 @@ export const AuthProvider = ({ children }) => {
   };
 
   const login = async (data) => {
-    await api.post('/api/account/login', data);
-    await fetchUser();
-    router.push('/user/order');
+    await api.post("/api/account/login", data);
+    const loggedInUser = await fetchUser();
+    const searchParams = new URLSearchParams(window.location.search);
+    const redirect = searchParams.get("redirect") 
+    console.log("Redirect", redirect, "user ", loggedInUser);
+
+    if(redirect){
+      console.log("1");
+      router.push(redirect);
+    } else if(loggedInUser?.is_admin){
+      console.log("2");
+      router.push("/user/dashboard");
+    } else {
+      console.log("3");
+      router.push("/user/order");
+    }
   };
+
 
   const logout = async () => {
     await api.post('/api/account/logout');
