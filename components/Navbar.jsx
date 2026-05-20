@@ -75,7 +75,7 @@ const Navbar = () => {
                 Login
               </Link>
               <Link href="/register" 
-                className={navLinkClass("/login")}
+                className={navLinkClass("/register")}
               >
                 Register
               </Link>
